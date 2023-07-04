@@ -49,6 +49,7 @@ public class Queue extends AbstractManager implements InterfaceManager{
         System.out.print("Input your name: ");
         String name = input.next();
         queue.enqueue(name);
+        System.out.println("Successfully booked.");
     }
 
     public void show(){
@@ -61,12 +62,11 @@ public class Queue extends AbstractManager implements InterfaceManager{
         queue.dequeueByString(name);
     }
 
-    @Override
-    public void showBanner() {
-        System.out.println("========================================");
-        System.out.println(" Welcome to the " + getObjectName() + " menu");
-        System.out.println("========================================");
+    public void queueByList(String[] names){
+        queue.enqueueByList(names);
     }
 
-
+    public void dequeue(String name){
+        queue.dequeueByString(name);
+    }
 }

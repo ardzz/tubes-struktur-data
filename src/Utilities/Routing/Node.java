@@ -1,7 +1,7 @@
 package Utilities.Routing;
 
 public class Node {
-    String data;
+    public String data;
     Node next;
     Route route;
     public Node(){

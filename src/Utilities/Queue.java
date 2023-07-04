@@ -26,8 +26,6 @@ public class Queue {
             last.next = people;
             last = people;
         }
-
-        System.out.println(name + " (Queue Number: " + people.queue_number + ") successfully queued.");
     }
 
     public void dequeue() {
@@ -53,6 +51,7 @@ public class Queue {
             People current = first;
             People temp = null;
             boolean found = false;
+
             while (current != null && !found) {
                 if (current.name.equals(name)) {
                     found = true;
@@ -61,19 +60,22 @@ public class Queue {
                     current = current.next;
                 }
             }
-            if(found){
-                if(temp == null){
+
+            if (found) {
+                if (temp == null) {
                     first = current.next;
                 } else {
-                    if(current.next == null){
+                    if (current.next == null) {
                         temp.next = null;
                     } else {
                         temp.next = current.next;
                         current.next = null;
                     }
                 }
-            }else{
-                throw new IllegalArgumentException("Node not found");
+
+                System.out.println(name + " successfully dequeued.");
+            } else {
+                System.out.println("Name not found.");
             }
         }
     }
@@ -89,6 +91,12 @@ public class Queue {
                 System.out.println(current.name + " (Queue Number: " + current.queue_number + ")");
                 current = current.next;
             }
+        }
+    }
+
+    public void enqueueByList(String[] names) {
+        for (String name : names) {
+            enqueue(name);
         }
     }
 }

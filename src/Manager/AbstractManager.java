@@ -14,4 +14,10 @@ public abstract class AbstractManager {
     public String getObjectName() {
         return object_name;
     }
+
+    public void showBanner() {
+        System.out.println("========================================");
+        System.out.println(" Welcome to the " + getObjectName() + " menu");
+        System.out.println("========================================");
+    }
 }

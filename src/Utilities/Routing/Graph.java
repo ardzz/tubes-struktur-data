@@ -143,10 +143,10 @@ public class Graph {
             if(found){
                 return current;
             }else{
-                throw new IllegalArgumentException("Node not found");
+                throw new IllegalArgumentException("Node " + data + " not found");
             }
         } else {
-            throw new IllegalArgumentException("Node not found");
+            throw new IllegalArgumentException("Node " + data + " not found");
         }
     }
 
@@ -165,20 +165,62 @@ public class Graph {
         if (node != null) {
             while (node != null) {
                 NodeCount++;
-                System.out.println("\nNode " + NodeCount + ": " + node.data);
                 Route route = node.route;
                 if (route != null) {
                     while (route != null) {
-                        System.out.println("Route to " + route.node.data + " is " + route.distance);
+                        System.out.println("Route from " + node.data + " to " + route.node.data + " with distance " + route.distance);
                         route = route.next;
                     }
-                    node = node.next;
-                }else{
-                    System.out.println("No routes");
                 }
+                node = node.next;
             }
         } else {
-            throw new IllegalArgumentException("Node not found");
+            throw new IllegalArgumentException("City not found");
+        }
+    }
+
+    public void printCity(){
+        Node node = firstNode;
+        if (node != null) {
+            while (node != null) {
+                NodeCount++;
+                System.out.println(node.data);
+                node = node.next;
+            }
+        } else {
+            throw new IllegalArgumentException("City not found");
+        }
+    }
+
+    public void removeRoute(Node from, Node to) {
+        Route current = from.route;
+        if (current != null) {
+            Route temp = null;
+            boolean found = false;
+            while (current != null && !found) {
+                if (current.node == to) {
+                    found = true;
+                } else {
+                    temp = current;
+                    current = current.next;
+                }
+            }
+            if(found){
+                if(temp == null){
+                    from.route = current.next;
+                } else {
+                    if(current.next == null){
+                        temp.next = null;
+                    } else {
+                        temp.next = current.next;
+                        current.next = null;
+                    }
+                }
+            }else{
+                throw new IllegalArgumentException("Route not found");
+            }
+        } else {
+            throw new IllegalArgumentException("Route not found");
         }
     }
 }
